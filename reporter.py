@@ -148,8 +148,10 @@ def get_sales_reports_for_calendar_unit(credentials, vendor, calendar_unit, star
     if calendar_unit == CalendarUnit.Week:
         end_date = closest_past_sunday(end_date)
 
+    date_type = CalendarUnit.adverbial_string_for(calendar_unit)
+
     for date_string in date_strings_for_range(start=start_date, end=end_date, step=calendar_unit):
-        get_sales_report(credentials, vendor, datetype, date_string)
+        get_sales_report(credentials, vendor, date_type, date_string)
 
 def get_sales_reports_for_all_calendar_units(credentials, vendor, startdate_string):
     calendar_units = [CalendarUnit.Day, CalendarUnit.Week, CalendarUnit.Month, CalendarUnit.Year]
